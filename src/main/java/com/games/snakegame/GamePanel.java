@@ -54,11 +54,21 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void paintComponent(Graphics graphics) {
-
+        //"super" calls parent class of current object
+        //paintCompoenent method from parent class of GamePanel which is JPanel
+        super.paintComponent(graphics);
+        draw(graphics);
     }
 
-    public void drawComponent(Graphics graphics) {
+    //Turns panel into matrix or grid for easier visibility
+    public void draw(Graphics graphics) {
+        graphics.setColor(Color.lightGray);
+        //draws lines across panel to make it become grid
+        for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
+            graphics.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+            graphics.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
 
+        }
     }
 
     public void newEdible(){

@@ -6,6 +6,5 @@ public class SnakeGame {
         //Create instance of GameFrame
         new GameFrame();
 
-        System.out.println("Hello world!");
     }
 }
