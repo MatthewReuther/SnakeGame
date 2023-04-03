@@ -1,4 +1,4 @@
-package org.example;
+package com.games.snakegame;
 
 public class SnakeGame {
     public static void main(String[] args) {
@@ -6,6 +6,5 @@ public class SnakeGame {
         //Create instance of GameFrame
         new GameFrame();
 
-        System.out.println("Hello world!");
     }
 }
