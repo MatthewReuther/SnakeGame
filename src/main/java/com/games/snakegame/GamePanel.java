@@ -83,8 +83,36 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
 
+    //method implementing the movement of the snake
     public void move() {
+        //iterate through all body part of snake
+        for(int i = bodyParts; i > 0; i--) {
+            //shift all the coordinates of the xCords arr by one
+            xCords[i] = xCords[i-1];
+            yCords[i] = yCords[i-1];
+        }
 
+        switch (direction) {
+            case 'U':
+                //set head (0 index) of yCords arr to the next position
+                yCords[0] = yCords[0] - UNIT_SIZE;
+                break;
+            case 'D':
+                //set head (0 index) of yCords arr to the next position
+                //think of arr on graph going up and down
+                yCords[0] = yCords[0] + UNIT_SIZE;
+                break;
+            case 'L':
+                //set head (0 index) of xCords arr to the next position
+                xCords[0] = xCords[0] - UNIT_SIZE;
+                break;
+            case 'R':
+                //set head (0 index) of xCords arr to the next position
+                //think of arr on graph going right to left
+                xCords[0] = xCords[0] + UNIT_SIZE;
+                break;
+
+        }
     }
 
     public void checkEdible() {
