@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    static final int SCREEN_WIDTH = 800;
-    static final int SCREEN_HEIGHT = 800;
+    static final int SCREEN_WIDTH = 600;
+    static final int SCREEN_HEIGHT = 600;
 
-    static final int UNIT_SIZE = 25;
+    static final int UNIT_SIZE = 50;
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE;
     //higher the slower game is
     static final int DELAY = 75;
@@ -66,29 +66,40 @@ public class GamePanel extends JPanel implements ActionListener {
 
     //Turns panel into matrix or grid for easier visibility
     public void draw(Graphics graphics) {
-        graphics.setColor(Color.lightGray);
-        //draws lines across panel to make it become grid
-        for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
-            graphics.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-            graphics.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-        }
-
-        //draw new edible on grid
-        graphics.setColor(Color.red);
-        graphics.fillOval(edibleX, edibleY, UNIT_SIZE, UNIT_SIZE);
-
-        //create for loop to loop through all body parts of the snake
-        for (int i = 0; i < bodyParts; i++) {
-            //if index is head of snake
-            if (i == 0) {
-                graphics.setColor(Color.cyan);
-                //fill coordinate with with cyan color and size of grid item (25px)
-                graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
-            } else {
-                //dealing with body of snake
-                graphics.setColor(Color.green);
-                graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
+        if(running) {
+            graphics.setColor(Color.lightGray);
+            //draws lines across panel to make it become grid
+            for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
+                graphics.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+                graphics.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
             }
+
+            //draw new edible on grid
+            graphics.setColor(Color.red);
+            graphics.fillOval(edibleX, edibleY, UNIT_SIZE, UNIT_SIZE);
+
+            //create for loop to loop through all body parts of the snake
+            for (int i = 0; i < bodyParts; i++) {
+                //if index is head of snake
+                if (i == 0) {
+                    graphics.setColor(Color.cyan);
+                    //fill coordinate with with cyan color and size of grid item (25px)
+                    graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
+                } else {
+                    //dealing with body of snake
+                    graphics.setColor(Color.green);
+                    graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
+                }
+            }
+
+            String gameScore = "Score: " + ediblesAte;
+            graphics.setColor(Color.RED);
+            graphics.setFont(new Font("Ink Free", Font.BOLD, 30));
+            FontMetrics fontMetrics = getFontMetrics(graphics.getFont());
+            graphics.drawString(gameScore, (SCREEN_WIDTH - fontMetrics.stringWidth(gameScore))/2, graphics.getFont().getSize());
+        } else {
+            //if game isnt running then game is over
+            gameOver(graphics);
         }
     }
 
@@ -188,7 +199,23 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics graphics) {
+        String gameOver = "Game Over!";
+        //Set game over text
+        graphics.setColor(Color.RED);
+        //choose font style
+        graphics.setFont(new Font("Ink Free", Font.BOLD, 80));
 
+        //Font Metrics helps align the text to middle of the screen
+        //Create instance of FontMetrics
+        FontMetrics fontMetrics = getFontMetrics(graphics.getFont());
+        //To get center of screen get screen width - the fontMetrics width / 2, then to get middle of screen vertically get screen height/2
+        graphics.drawString(gameOver, (SCREEN_WIDTH - fontMetrics.stringWidth(gameOver))/2, SCREEN_HEIGHT/2);
+
+        String gameScore = "Score: " + ediblesAte;
+        graphics.setColor(Color.RED);
+        graphics.setFont(new Font("Ink Free", Font.BOLD, 30));
+        FontMetrics scoreMetrics = getFontMetrics(graphics.getFont());
+        graphics.drawString(gameScore, (SCREEN_WIDTH - scoreMetrics.stringWidth(gameScore))/2, graphics.getFont().getSize());
     }
 
 
