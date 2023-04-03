@@ -72,6 +72,20 @@ public class GamePanel extends JPanel implements ActionListener {
         //draw new edible on grid
         graphics.setColor(Color.red);
         graphics.fillOval(edibleX, edibleY, UNIT_SIZE, UNIT_SIZE);
+
+        //create for loop to loop through all body parts of the snake
+        for (int i = 0; i < bodyParts; i++) {
+            //if index is head of snake
+            if (i == 0) {
+                graphics.setColor(Color.cyan);
+                //fill coordinate with with cyan color and size of grid item (25px)
+                graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
+            } else {
+                //dealing with body of snake
+                graphics.setColor(Color.green);
+                graphics.fillRect(xCords[i], yCords[i], UNIT_SIZE, UNIT_SIZE);
+            }
+        }
     }
 
     //generate new edible for game panel when this called
