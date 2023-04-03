@@ -133,7 +133,44 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
 
+    //checks if head of snake collides with body of snake
     public void checkCollision() {
+        //iterate through all of the body parts of the snake
+        //decrement i to go through each of the body parts
+        for (int i = bodyParts; i > 0; i--) {
+            //if the head of the snake x cord is equal this index x cord
+            //and the head of the snake y cord is equal this index y cord you collided
+            if((xCords[0] == xCords[i]) && (yCords[0] == yCords[i])) {
+                running = false;
+            }
+
+            //check if the head of the snake hits left side of game panel border
+            if(xCords[0] < 0 ) {
+                running = false;
+            }
+
+            //check if the head of the snake hits right side of game panel border
+            if(xCords[0] > SCREEN_WIDTH ) {
+                running = false;
+            }
+
+            //check if the head of the snake hits top side of game panel border
+            if(yCords[0] < 0 ) {
+                running = false;
+            }
+
+            //check if the head of the snake hits bottom side of game panel border
+            //if yCord is greater than our screen height
+            if(yCords[0] > SCREEN_HEIGHT ) {
+                running = false;
+            }
+
+            //if not running stop the timer
+            if (!running) {
+                timer.stop();
+            }
+
+        }
 
     }
 
