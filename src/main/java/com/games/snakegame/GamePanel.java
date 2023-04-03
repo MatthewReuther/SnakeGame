@@ -67,11 +67,19 @@ public class GamePanel extends JPanel implements ActionListener {
         for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
             graphics.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
             graphics.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-
         }
+
+        //draw new edible on grid
+        graphics.setColor(Color.red);
+        graphics.fillOval(edibleX, edibleY, UNIT_SIZE, UNIT_SIZE);
     }
 
+    //generate new edible for game panel when this called
     public void newEdible(){
+        //add new edible to panel in random point of our grid
+        //set range equal to screen width (800px) divided the size of the edible (25px)
+        edibleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE)) * UNIT_SIZE;
+        edibleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE)) * UNIT_SIZE;
 
     }
 
