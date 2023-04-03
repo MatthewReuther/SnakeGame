@@ -4,8 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Random;
-import com.games.snakegame.MyKeyAdapter;
+//import com.games.snakegame.MyKeyAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements ActionListener {
@@ -193,5 +197,46 @@ public class GamePanel extends JPanel implements ActionListener {
         //if it is not running call repaint method and create new panel
         repaint();
 
+    }
+
+    public class MyKeyAdapter extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            //get the key code
+            switch (e.getKeyCode()) {
+                //if user pressed left arrow key
+                case KeyEvent.VK_LEFT:
+                    //dont want users to be able to go back on themselves
+                    //so want to implement only 90 degree turns
+                    if (direction != 'R') {
+                        direction = 'L';
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    //dont want users to be able to go back on themselves
+                    //so want to implement only 90 degree turns
+                    if (direction != 'L') {
+                        direction = 'R';
+                    }
+                    break;
+
+                case KeyEvent.VK_UP:
+                    //dont want users to be able to go back on themselves
+                    //so want to implement only 90 degree turns
+                    if (direction != 'D') {
+                        direction = 'U';
+                    }
+                    break;
+
+                case KeyEvent.VK_DOWN:
+                    //dont want users to be able to go back on themselves
+                    //so want to implement only 90 degree turns
+                    if (direction != 'U') {
+                        direction = 'D';
+                    }
+                    break;
+
+            }
+        }
     }
 }
