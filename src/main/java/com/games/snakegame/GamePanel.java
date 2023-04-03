@@ -144,6 +144,17 @@ public class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //if the game is running
+        if (running) {
+            //move the snake
+            move();
+            //if we ate an edible
+            checkEdible();
+            //if we collided with our snake body"
+            checkCollision();
+        }
+        //if it is not running call repaint method and create new panel
+        repaint();
 
     }
 }
