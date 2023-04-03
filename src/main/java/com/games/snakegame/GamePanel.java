@@ -133,8 +133,17 @@ public class GamePanel extends JPanel implements ActionListener {
         }
     }
 
+    //check coordinates of snake and edible
     public void checkEdible() {
-
+        //if coordinates are the same
+        if((xCords[0] == edibleX) && (yCords[0] == edibleY)) {
+            //increment snake body parts (6 to 7) and so on
+            bodyParts++;
+            //increment edibles ate or score plus 1
+            ediblesAte++;
+            //create new random edible
+            newEdible();
+        }
     }
 
     //checks if head of snake collides with body of snake
