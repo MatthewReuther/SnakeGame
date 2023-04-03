@@ -14,13 +14,13 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements ActionListener {
 
-    static final int SCREEN_WIDTH = 600;
-    static final int SCREEN_HEIGHT = 600;
+    static final int SCREEN_WIDTH = 800;
+    static final int SCREEN_HEIGHT = 800;
 
-    static final int UNIT_SIZE = 50;
+    static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE;
     //higher the slower game is
-    static final int DELAY = 75;
+    static final int DELAY = 50;
 
     //holds coordinates for all body parts of our snake
     final int xCords[]   = new int[GAME_UNITS];
@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
             String gameScore = "Score: " + ediblesAte;
             graphics.setColor(Color.RED);
-            graphics.setFont(new Font("Ink Free", Font.BOLD, 30));
+            graphics.setFont(new Font("Ink Free", Font.BOLD, 20));
             FontMetrics fontMetrics = getFontMetrics(graphics.getFont());
             graphics.drawString(gameScore, (SCREEN_WIDTH - fontMetrics.stringWidth(gameScore))/2, graphics.getFont().getSize());
         } else {
