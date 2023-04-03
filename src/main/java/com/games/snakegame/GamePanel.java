@@ -25,10 +25,10 @@ public class GamePanel extends JPanel implements ActionListener {
     //initial amount of snake body parts
     int bodyParts = 6;
 
-    //Set score to amount of 'apples' eaten
-    int score;
-    int scoreX;
-    int scoreY;
+    //Set score to amount of 'edibles' eaten
+    int ediblesAte;
+    int edibleX;
+    int edibleY;
 
     //Set direction of snake at start
     char direction = 'R';
@@ -37,11 +37,20 @@ public class GamePanel extends JPanel implements ActionListener {
     Random random;
 
     GamePanel() {
-
+        random = new Random();
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this.setBackground(Color.black);
+        this.setFocusable(true);
+        this.addKeyListener(new MyKeyAdapter());
+        startGame();
     }
 
     public void startGame() {
-
+        //
+        newEdible();
+        running = true;
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
 
     public void paintComponent(Graphics graphics) {
@@ -52,11 +61,15 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
 
+    public void newEdible(){
+
+    }
+
     public void move() {
 
     }
 
-    public void checkScore() {
+    public void checkEdible() {
 
     }
 
@@ -67,6 +80,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public void gameOver(Graphics graphics) {
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
